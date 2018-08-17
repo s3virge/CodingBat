@@ -9,8 +9,6 @@ public class Main {
        testAltPairs();
     }
 
-
-
     /*
 Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
 
@@ -54,6 +52,22 @@ altPairs("ThisThatTheOther") → "ThThThth"	"ThThThth"	OK
     }
 
     public static String altPairs2(String str) {
+        String sRes = new String();
+
+        for (int c = 0; c < str.length(); c += 4) {
+            int end = c + 2;
+
+            if (end > str.length()) {
+                end = str.length();
+            }
+
+            sRes += str.substring(c, end);
+        }
+
+        return sRes;
+    }
+
+    public static String altPairsAnswer(String str) {
         String result = "";
 
         // Run i by 4 to hit 0, 4, 8, ...
@@ -81,10 +95,13 @@ altPairs("ThisThatTheOther") → "ThThThth"	"ThThThth"	OK
         arr.add("ya");
         arr.add("y");
         arr.add("");
+        arr.add("");
 
         for (String str : arr) {
             System.out.print(str + " -> ");
             System.out.println(altPairs(str));
         }
     }
+
+
 }
