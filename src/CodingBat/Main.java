@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-       testAltPairs();
+//       testAltPairs();
+
+        testwithoutX2();
     }
 
     /*
@@ -85,6 +87,32 @@ altPairs("ThisThatTheOther") → "ThThThth"	"ThThThth"	OK
         return result;
     }
 
+    public static String withoutX2(String str) {
+
+        int counter = 0;
+        //если в строке два символа и больше, то проверяем вторую букву на 'x'
+        if (str.length() > 1 && str.charAt(1) == 'x') {
+            //вторая буква 'x' избавляемся от нее
+            str = str.charAt(0) + str.substring(2);
+            counter++;
+        }
+
+        //если строка не пустая и первая буква х
+        if (str.length() > 0 && str.charAt(0) == 'x') {
+            str = str.substring(1); //то избавляемя от х
+            counter++;
+        }
+
+        //str стала на один символ короче. //если строка не пустая и первая буква х
+        //и еще не удалялись две буквы х
+        if (str.length() > 0 && counter !=2 && str.charAt(0) == 'x') {
+            str = str.substring(1);
+        }
+
+
+        return str;
+    }
+
     public static void testAltPairs() {
         ArrayList<String> arr = new ArrayList<String>();
 
@@ -103,5 +131,27 @@ altPairs("ThisThatTheOther") → "ThThThth"	"ThThThth"	OK
         }
     }
 
+    public static void testwithoutX2() {
+        ArrayList<String> arr = new ArrayList<String>();
+
+        arr.add("xHi");
+        arr.add("Hxi");
+        arr.add("Hi");
+        arr.add("");
+        arr.add("q");
+        arr.add("x");
+        arr.add("qq");
+        arr.add("xq");
+        arr.add("qx");
+        arr.add("xx");
+        arr.add("xxx");
+        arr.add("xaxb");
+        arr.add("xHxllo");
+
+        for (String str : arr) {
+            System.out.print(str + " -> ");
+            System.out.println(withoutX2(str));
+        }
+    }
 
 }
